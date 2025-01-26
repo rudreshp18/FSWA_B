@@ -6,10 +6,17 @@ const cors = require('cors');
 const PORT = process.env.PORT
 const authRoutes = require('./routes/authRoutes')
 const feedRoutes = require('./routes/feedRoutes')
-const verify = require('./controllers/verify'); 
+const verify = require('./controllers/verify');
+const allowedOrigins = ['https://fswa-f-wyg9.vercel.app', 'http://localhost:5173'];
 
 app.use(cors({
-    origin: 'https://fswa-f-wyg9.vercel.app',
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 
