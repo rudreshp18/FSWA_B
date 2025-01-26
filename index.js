@@ -9,7 +9,7 @@ const feedRoutes = require('./routes/feedRoutes')
 const verify = require('./controllers/verify'); 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://fswa-f-wyg9.vercel.app',
     credentials: true,
 }));
 
